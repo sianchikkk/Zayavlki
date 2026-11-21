@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="newjs.js" defer></script>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Заявки корпуса</h1>
+    <ul id="ticketList"></ul>
+    <label for="sluchilos">Что случилось?</label>
+    <input id="sluchilos" type="text">
+    <label for="place">Где?</label>
+    <input id="place" type="text">
+    <label for="categoriaSelect">Категория:</label>
+    <select id="categoriaSelect">
+        <option value="notSelected">Выберите категорию</option>
+        <option value="Оборудование">Оборудование</option>
+        <option value="Аудитория">Аудитория</option>
+        <option value="Другое">Другое</option>
+    </select>
+    <button id="addButton" type="button">Добавить заявку</button>
+    <p id="message"></p>
+</body>
+
+</html>
