@@ -10,23 +10,35 @@ const ticketList = document.getElementById(`ticketList`);
 const addButton = document.getElementById(`addButton`);
 const message = document.getElementById(`message`);
 
-addButton.addEventListener(`click`,() =>{
-    
-    if (sluchilos.value.trim === '') {
-        sluchilos.message.textContent = 'Введите причину'
+addButton.addEventListener(`click`, () => {
+    if (sluchilos.value.trim() === '') {
+        message.textContent = 'Введите причину';
         return;
     }
-    if (place.value.trim === '') {
-        place.message.textContent = 'Введите место'
+    if (place.value.trim() === '') {
+        message.textContent = 'Введите место';
         return;
     }
-    if (category.value === "notSelected") {
-        sluchilos.message.textContent = 'Введите причину'
+    if (categoriaSelect.value === "") {
+        message.textContent = 'Выберите категорию';
         return;
     }
-    renderTickets();
 
-})
+    const newTicket = {
+        title: sluchilos.value.trim(),
+        room: place.value.trim(),
+        category: categoriaSelect.value,
+        done: false
+    };
+    tickets.push(newTicket);
+
+    sluchilos.value = '';
+    place.value = '';
+    categoriaSelect.value = '';
+    message.textContent = '';
+
+    renderTickets();
+});
 function renderTickets() {
     ticketList.innerHTML = '';
     let ticketsToShow;
