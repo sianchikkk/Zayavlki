@@ -41,17 +41,75 @@ addButton.addEventListener(`click`, () => {
 });
 function renderTickets() {
     ticketList.innerHTML = '';
-    let ticketsToShow;
-    tickets.forEach(ticket => {
+
+    if (tickets.length === 0) {
         const li = document.createElement('li');
-        if(ticket.done === true){
-            ticket.done = "ДА"
+        li.textContent = 'Заявок пока нет';
+        ticketList.append(li);
+        return;
+    }
+
+    let ticketsToShow = 0;
+
+    tickets.forEach((ticket, index) => {
+        if (onlyOpen.checked === true && ticket.done === true) {
+            return;
         }
-        else if(ticket.done === true){
-            ticket.done = "НЕТ"
+        ticketsToShow++;
+
+        const li = document.createElement('li');
+
+        let statusText = '';
+        if (ticket.done === true) {
+            statusText = 'Выполнена';
+        } else {
+            statusText = 'Открыта';
         }
-        li.textContent = `Причина: ${ticket.title} Кабинет: ${ticket.room} Категория: ${ticket.category} Выполнил ли ${ticket.done}`;
+
+        const spanText = document.createElement('span');
+        spanText.textContent = `Причина: ${ticket.title} | Кабинет: ${ticket.room} | Категория: ${ticket.category} | Статус: `;
+
+        const spanStatus = document.createElement('span');
+        spanStatus.textContent = statusText;
+        if (ticket.done === true) {
+            spanStatus.className = 'done';
+        } else {
+            spanStatus.className = 'open';
+        }
+
+        li.append(spanText, spanStatus);
+
+        if (ticket.done === false) {
+            const doneButton = document.createElement('button');
+            doneButton.textContent = 'Выполнить';
+            doneButton.addEventListener('click', () => {
+                tickets[index].done = true;
+                renderTickets();
+            });
+            li.append(doneButton);
+        }
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Удалить';
+        deleteButton.addEventListener('click', () => {
+            tickets.splice(index, 1);
+            renderTickets();
+        });
+        li.append(deleteButton);
+
         ticketList.append(li);
     });
+
+    if (ticketsToShow === 0) {
+        const li = document.createElement('li');
+        li.textContent = 'Открытых заявок нет';
+        ticketList.append(li);
+    }
 }
+
+onlyOpen.addEventListener('change', () => {
+    renderTickets();
+});
+
+renderTickets();
 

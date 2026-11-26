@@ -1,0 +1,25 @@
+.add-form {
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+#message {
+    color: red;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+button {
+    margin-left: 8px;
+}
+
+.done {
+    color: green;
+}
+
+.open {
+    color: blue;
+}

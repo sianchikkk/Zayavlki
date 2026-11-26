@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="newjs.js" defer></script>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="in.css">
 </head>
 
 <body>
-    <h1>Заявки корпуса</h1>
+   <h1>Заявки корпуса</h1>
 
-    <div class="form-box">
+    <div class="add-form">
         <label for="sluchilos">Что случилось?</label>
         <input id="sluchilos" type="text">
 
@@ -31,10 +31,11 @@
         <p id="message"></p>
     </div>
 
-    <div class="filter-box">
-        <label>
-            <input type="checkbox" id="onlyOpen"> Только открытые
-        </label>
+    <label>
+        <input type="checkbox" id="onlyOpen"> Только открытые
+    </label>
+
+    <ul id="ticketList"></ul>
 </body>
 
 </html>
